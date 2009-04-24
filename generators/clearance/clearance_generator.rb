@@ -7,7 +7,7 @@ class ClearanceGenerator < Rails::Generator::Base
   def manifest
     record do |m|
       m.insert_into "app/controllers/application_controller.rb",
-                    "include Clearance::Authentication"
+                    "include Clearance::Authentication\nbefore_filter :authenticate"
 
       user_model = "app/models/user.rb"
       if File.exists?(user_model)

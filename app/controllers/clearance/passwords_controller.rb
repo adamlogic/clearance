@@ -3,6 +3,7 @@ class Clearance::PasswordsController < ApplicationController
 
   before_filter :forbid_missing_token,     :only => [:edit, :update]
   before_filter :forbid_non_existent_user, :only => [:edit, :update]
+  skip_before_filter :authenticate
   filter_parameter_logging :password, :password_confirmation
 
   def new

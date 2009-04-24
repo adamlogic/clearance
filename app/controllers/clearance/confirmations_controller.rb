@@ -4,6 +4,7 @@ class Clearance::ConfirmationsController < ApplicationController
   before_filter :forbid_confirmed_user,    :only => :new
   before_filter :forbid_missing_token,     :only => :new
   before_filter :forbid_non_existent_user, :only => :new
+  skip_before_filter :authenticate
   filter_parameter_logging :token
 
   def new
