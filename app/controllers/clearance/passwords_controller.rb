@@ -14,11 +14,11 @@ class Clearance::PasswordsController < ApplicationController
     if user = ::User.find_by_email(params[:password][:email])
       user.forgot_password!
       ::ClearanceMailer.deliver_change_password user
-      flash[:notice] = "You will receive an email within the next few minutes. " <<
+      flash[NOTICE_FLASH] = "You will receive an email within the next few minutes. " <<
                        "It contains instructions for changing your password."
       redirect_to url_after_create
     else
-      flash.now[:notice] = "Unknown email"
+      flash.now[NOTICE_FLASH] = "Unknown email"
       render :template => 'passwords/new'
     end
   end

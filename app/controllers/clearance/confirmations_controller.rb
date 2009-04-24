@@ -16,7 +16,7 @@ class Clearance::ConfirmationsController < ApplicationController
     @user.confirm_email!
 
     sign_user_in(@user)
-    flash[:success] = "Confirmed email and signed in."
+    flash[SUCCESS_FLASH] = "Confirmed email and signed in."
     redirect_to url_after_create
   end
 

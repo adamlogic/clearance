@@ -1,5 +1,8 @@
 module Clearance
   module Authentication
+    SUCCESS_FLASH = :success
+    NOTICE_FLASH = :notice
+    ERROR_FLASH = :error
 
     def self.included(controller)
       controller.send(:include, InstanceMethods)
