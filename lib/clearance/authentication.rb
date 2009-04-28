@@ -17,7 +17,7 @@ module Clearance
 
     module InstanceMethods
       def current_user
-        @_current_user ||= (user_from_cookie || user_from_session)
+        @_current_user ||= (user_from_cookie || user_from_session || user_from_basic_auth)
       end
 
       def signed_in?
@@ -41,6 +41,12 @@ module Clearance
         if token = cookies[:remember_token]
           return nil  unless user = ::User.find_by_token(token)
           return user if     user.remember?
+        end
+      end
+
+      def user_from_basic_auth
+        authenticate_with_http_basic do |email, password|
+          return ::User.authenticate(email, password)
         end
       end
 
