@@ -50,7 +50,6 @@ module Clearance
         model.class_eval do
           validates :email,
                     :presence       => true,
-                    :case_sensitive => false,
                     :allow_blank    => true,
                     :format         => %r{.+@.+\..+},
                     :unless         => :email_optional?
